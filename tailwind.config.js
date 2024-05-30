@@ -129,6 +129,9 @@ module.exports = {
         maxContent: "1260px",
         maxContentTab: "650px"
       },
+      backgroundImage: {
+        'ellipse-gradient': 'radial-gradient(ellipse at center, #8A2BE2 -6.46%, #FFA500 59.04%, #F8F8FF 124.53%)',
+      },
     },
   },
   plugins: [],

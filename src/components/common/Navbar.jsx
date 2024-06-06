@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import React, { useEffect,useState } from "react";
 import { Link, matchPath, useLocation } from "react-router-dom";
 import Logo from "../../assets/Logo/Logo-Full-Light.png";
 import { NavbarLinks } from "../../data/navbar-links";
@@ -10,16 +10,16 @@ import { apiConnector } from "../../services/apiconnector";
 import { categories } from "../../services/apis";
 // useEffect
 
-const subLinks = [
-  {
-    title: "python",
-    link: "/catalog/python",
-  },
-  {
-    title: "Web Development",
-    link: "/catalog/web-development",
-  },
-];
+// const subLinks = [
+//   {
+//     title: "python",
+//     link: "/catalog/python",
+//   },
+//   {
+//     title: "Web Development",
+//     link: "/catalog/web-development",
+//   },
+// ];
 
 const Navbar = () => {
   
@@ -33,12 +33,15 @@ const Navbar = () => {
   const { user } = useSelector((state) => state.profile);
   const { totalItems } = useSelector((state) => state.cart);
 
-  // const [ssubLinks , setsSublinks] = useState([]);
+  const [subLinks , setSublinks] = useState([]);
 
   const fetchSubLinks = async () => {
     try {
       const response = await apiConnector("GET" , categories.CATEGORIES_API)
       console.log("Response of the Getting Sublinks ", response);
+      // const result = await response.json();
+      setSublinks(response.data.data)
+      // console.log("sublinks \n" , subLinks)
     } catch (error) {
       console.log("Could not fetch the category Api")
     }
@@ -85,11 +88,11 @@ const Navbar = () => {
                         {subLinks.length ? (
                           subLinks.map((subLink, index) => (
                             <Link to={subLink.link} key={index}>
-                              <p>{subLink.title}</p>
+                              <p>{subLink.name}</p>
                             </Link>
                           ))
                         ) : (
-                          <div></div>
+                          <div>No Categories fetch</div>
                         )}
                       </div>
                     </div>

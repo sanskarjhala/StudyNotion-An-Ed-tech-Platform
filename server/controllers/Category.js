@@ -55,13 +55,13 @@ exports.createCategory = async(req, res) => {
 //handler to show all tags 
 exports.showAllCategories = async(req,res) => {
     try {
-        const allCategory = await Category.find({} , {name:true , description:true});
+        const allCategory = await Category.find({});
         
         return res.status(200).json(
             {
                 success:true,
                 message:"All category fetched Successfully",
-                allCategory,
+                data:allCategory,
             }
         )
     } catch (error) {

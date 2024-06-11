@@ -27,7 +27,7 @@ function SignupForm() {
   const [showPassword, setShowPassword] = useState(false)
   const [showConfirmPassword, setShowConfirmPassword] = useState(false)
 
-  const { firstName, lastName, email, password, confirmPassword } = formData
+  const { firstName, lastname, email, password, confirmPassword } = formData
 
   // Handle input fields, when some value changes
   const handleOnChange = (e) => {
@@ -50,6 +50,7 @@ function SignupForm() {
       accountType,
     }
 
+    console.log("SIGN UP DATA : " , signupData)
     // Setting signup data to state
     // To be used after otp verification
     dispatch(setSignupData(signupData))
@@ -59,7 +60,7 @@ function SignupForm() {
     // Reset
     setFormData({
       firstName: "",
-      lastName: "",
+      lastname: "",
       email: "",
       password: "",
       confirmPassword: "",
@@ -113,7 +114,7 @@ function SignupForm() {
               required
               type="text"
               name="lastName"
-              value={lastName}
+              value={lastname}
               onChange={handleOnChange}
               placeholder="Enter last name"
               style={{

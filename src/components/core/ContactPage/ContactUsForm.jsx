@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import { useForm } from "react-hook-form";
 import CountryCode from "../../../data/countrycode.json";
-import CTAButton from "../HomePage/Button";
+import { useDispatch } from "react-redux";
+import { contactUs } from "../../../services/operations/contactApi";
 
 const ContactUsForm = () => {
   const [loading, setLoading] = useState(false);
+  const [data, setdata] = useState({});
+  const dispatch = useDispatch();
+
   const {
     handleSubmit,
     register,
@@ -13,8 +17,11 @@ const ContactUsForm = () => {
   } = useForm();
 
   const submitContactForm = async (data) => {
-    console.log("Logging Data" , data)
-  }
+    const { firstname, lastname, email, message, phoneNo, countryCode } = data;
+    dispatch(
+      contactUs(firstname, lastname, email, message, phoneNo, countryCode)
+    );
+  };
 
   useEffect(() => {
     if (isSubmitSuccessful) {
@@ -29,7 +36,10 @@ const ContactUsForm = () => {
   }, [reset, isSubmitSuccessful]);
 
   return (
-    <form className="flex flex-col w-full gap-y-4" onSubmit={handleSubmit(submitContactForm)}>
+    <form
+      className="flex flex-col w-full gap-y-4"
+      onSubmit={handleSubmit(submitContactForm)}
+    >
       <div className="lg:flex gap-x-8">
         <label>
           <p className="mb-1 text-[0.875rem] leading-[1.375rem] text-richblack-5 font-inter">

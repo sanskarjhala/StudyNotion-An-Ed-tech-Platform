@@ -11,14 +11,16 @@ exports.upadteProfile = async (req, res) => {
 
     //get user id
     const userId = req.user.id;
-
     //perform validation
+    console.log(dateOfBirth ,  about , gender , contactNumber)
     if (!contactNumber || !userId || !gender) {
       return res.status(400).json({
         success: false,
         message: "All fileds are required",
       });
     }
+
+    console.log(dateOfBirth ,  about , gender , contactNumber)
 
     //find profile
     const userDeatils = await User.findById(userId);
@@ -28,14 +30,18 @@ exports.upadteProfile = async (req, res) => {
     //update profile
     profileDetails.dateOfBirth = dateOfBirth;
     (profileDetails.about = about),
-      (profileDetails.contactNumber = contactNumber),
-      (profileDetails.gender = gender),
-      await profileDetails.save();
+      (profileDetails.contactNumber = contactNumber);
+    profileDetails.gender = gender;
+
+    await profileDetails.save();
+
+    const updatedUserDetails = await User.findById(userId).populate("additionalDetails");
 
     //return response
     return res.status(200).json({
-      success: false,
+      success: true,
       message: "profile updated succesfully",
+      data: updatedUserDetails,
     });
   } catch (error) {
     return res.status(500).json({
@@ -50,7 +56,7 @@ exports.upadteProfile = async (req, res) => {
 //Explore -> how can we schedule this deletion operation
 exports.deleteAccount = async (req, res) => {
   try {
-    //get user id
+    //get user id (token)
     const userId = req.user.id;
 
     //perform validation
@@ -116,13 +122,13 @@ exports.getAllUserDetails = async (req, res) => {
 //updateDisplayPicture
 exports.updatedDisplayPicture = async (req, res) => {
   try {
-    console.log("Entered updated display picture route")
-    console.log("user id" , req.user.id);
-    const userId = req.user.id;
-    console.log("Display picture " , req.files.displayPicture)
+    console.log("Entered updated display picture route");
+    console.log("user id", req.user.id);
+    const userId = req.user.id; // token
+    console.log("Display picture ", req.files.displayPicture);
     const displayPicture = req.files.displayPicture;
-    
-    console.log("Display picture " , displayPicture , " userID " , userId)
+
+    console.log("Display picture ", displayPicture, " userID ", userId);
     const uploadImageResponse = await uploadImageToCloudinary(
       displayPicture,
       process.env.FOLDER_NAME,

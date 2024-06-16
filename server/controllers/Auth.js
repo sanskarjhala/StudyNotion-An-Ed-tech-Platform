@@ -263,7 +263,7 @@ exports.changePassword = async (req, res) => {
       return res.status(404).json(
         {
           success:false,
-          message:"USer not Found",
+          message:"User not Found",
         }
       )
     }
@@ -278,15 +278,18 @@ exports.changePassword = async (req, res) => {
         }
       )
     }
+    console.log(" newPassword : " , newPassword)
+    console.log(" oldPassword : " , oldPassword)
+    console.log(" confirmPassword : " , confirmPassword)
   //newPasswrod nad confirmPassword
-  if(newPassword !== confirmPassword){
-    return res.status(400).json(
-      {
-        success:false,
-        message:"newPasswrod and confirm password does not match",
-      }
-    )
-  }
+  // if(newPassword !== confirmPassword){
+  //   return res.status(400).json(
+  //     {
+  //       success:false,
+  //       message:"newPasswrod and confirm password does not match",
+  //     }
+  //   )
+  // }
 
   //update user details 
   const encryptedPassword = await bcrypt.hash(newPassword,10);

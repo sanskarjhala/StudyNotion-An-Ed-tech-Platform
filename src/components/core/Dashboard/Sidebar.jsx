@@ -6,6 +6,7 @@ import SidebarLink from './SidebarLink'
 import { useNavigate } from 'react-router-dom'
 import { VscSignOut } from 'react-icons/vsc'
 import ConfirmationModal from '../../common/ConfirmationModal'
+import { MdKeyboardDoubleArrowRight,MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
 const Sidebar = () => {
 
@@ -14,6 +15,8 @@ const Sidebar = () => {
     const dispatch = useDispatch();
     const navigate = useNavigate()
     const [confirmationModal , setConfirmationModal ] = useState(null) 
+
+    const [open, setOpen] = useState(false);
 
 
     if (profileLoading || authLoading) {
@@ -26,9 +29,26 @@ const Sidebar = () => {
 
 
   return (
-    <>
-      <div className="fixed flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px] bg-richblack-800 py-10">
-        <div className="flex flex-col">
+    <div>
+      {
+        open ? 
+        (<div className="fixed flex h-[calc(100vh-3.5rem)] lg:min-w-[50px] flex-col border-r-[1px]
+       bg-richblack-800  items-center  realtive">
+
+          <MdKeyboardDoubleArrowRight className='text-3xl text-richblack-300 mt-2'
+            onClick={() => setOpen((prev) => !prev)}
+          />
+
+        </div>)
+        : (<div className="fixed flex h-[calc(100vh-3.5rem)] min-w-[220px] flex-col border-r-[1px]
+       bg-richblack-800 py-10 transition duration-300 ease-in">
+          <div>
+        <div className="flex flex-col ">
+          <div className='relative mb-10'>
+            <MdKeyboardDoubleArrowLeft className='text-3xl text-richblack-300 text-left ml-2 absolute -top-8'
+               onClick={() => setOpen((prev) => !prev)}
+            />
+          </div>
           {sidebarLinks.map((link) => {
             if (link.type && user?.accountType !== link.type) return null
             return (
@@ -63,8 +83,11 @@ const Sidebar = () => {
         </div>
       </div>
       {confirmationModal && <ConfirmationModal modalData={confirmationModal} />}
-    </>
+        </div>)
+      }
+    </div>
   )
 }
 
 export default Sidebar
+

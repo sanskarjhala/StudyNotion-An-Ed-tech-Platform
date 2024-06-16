@@ -13,6 +13,7 @@ import Error from "./pages/Error"
 import PrivateRoute from "./components/core/Auth/PrivateRoute";
 import Dashboard from "./pages/Dashboard";
 import Profile from "./components/core/Dashboard/Profile"
+import Settings from "./components/core/Dashboard/Settings";
 
 function App() {
   return (
@@ -81,6 +82,8 @@ function App() {
           </PrivateRoute>
         }>
           <Route path="dashboard/my-profile" element={<Profile/>}/>
+          <Route path="dashboard/settings" element={<Settings/>}/>
+          
         </Route>
 
 

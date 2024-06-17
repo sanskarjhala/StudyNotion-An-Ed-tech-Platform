@@ -66,7 +66,7 @@ export function updateProfile(token, formData , navigate) {
         ? response.data.data.image
         : `https://api.dicebear.com/5.x/initials/svg?seed=${response.data.data.firstName} ${response.data.updatedUserDetails.lastname}`;
 
-      
+      console.log("USER IMAGE : " , userImage)
       dispatch(
         setUser(response.data.data)
       );

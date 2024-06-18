@@ -15,15 +15,15 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./components/core/Dashboard/Profile";
 import Settings from "./components/core/Dashboard/Settings";
 import { ACCOUNT_TYPE } from "./utils/constants";
-import AddCourse from "./components/core/Dashboard/AddCourse";
+// import AddCourse from "./components/core/Dashboard/AddCourse";
 import { useDispatch, useSelector } from "react-redux";
 
 
 
 function App() {
 
-  const dispatch = useDispatch()
-  const navigate = useNavigate()
+  // const dispatch = useDispatch()
+  // const navigate = useNavigate()
   const {user} = useSelector((state) => state.profile)
 
 
@@ -108,7 +108,7 @@ function App() {
           {
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
               <>
-                <Route path="dashboard/add-course" element={<AddCourse/>}/>
+                {/* <Route path="dashboard/add-course" element={<AddCourse/>}/> */}
               </>
             )
           }

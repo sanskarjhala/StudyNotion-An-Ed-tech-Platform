@@ -20,7 +20,7 @@ exports.createCourse = async (req, res) => {
     } = req.body; //tag => is representing the id
 
     //fetch image file
-    const thumbnail = req.files.thumbnailImage;
+    // const thumbnail = req.files.thumbnailImage;
 
     //validation
     if (
@@ -28,7 +28,7 @@ exports.createCourse = async (req, res) => {
       !courseDescription ||
       !whatYouWillLearn ||
       !price ||
-      !thumbnail ||
+      // !thumbnail ||
       !category
     ) {
       return res.status(400).json({
@@ -67,10 +67,10 @@ exports.createCourse = async (req, res) => {
     }
 
     //image upload to cludinary
-    const cloudinaryResponse = await uploadImageToCloudinary(
-      thumbnail,
-      process.env.FOLDER_NAME
-    );
+    // const cloudinaryResponse = await uploadImageToCloudinary(
+    //   thumbnail,
+    //   process.env.FOLDER_NAME
+    // );
 
     //create entry in database
     const newCourse = await Course.create({
@@ -79,11 +79,11 @@ exports.createCourse = async (req, res) => {
       instructor: instructorDeatils._id,
       whatYouWillLearn: whatYouWillLearn,
       price,
-      tag: tag,
+      // tag: tag,
       category: categoryDetails._id,
       status: status,
       instructions: instructions,
-      thumbnail: cloudinaryResponse.secure_url,
+      // thumbnail: cloudinaryResponse.secure_url,
     });
 
     //update User (instructor) updating the new course to user schema

@@ -1,4 +1,4 @@
-import { Routes, Route, useNavigate } from "react-router-dom";
+import { Routes, Route } from "react-router-dom";
 import "./App.css";
 import Home from "./pages/Home";
 import Login from "./pages/Login";
@@ -15,8 +15,8 @@ import Dashboard from "./pages/Dashboard";
 import Profile from "./components/core/Dashboard/Profile";
 import Settings from "./components/core/Dashboard/Settings";
 import { ACCOUNT_TYPE } from "./utils/constants";
-// import AddCourse from "./components/core/Dashboard/AddCourse";
-import { useDispatch, useSelector } from "react-redux";
+import AddCourse from "./components/core/Dashboard/CreateCourse";
+import { useSelector } from "react-redux";
 
 
 
@@ -29,7 +29,7 @@ function App() {
 
   return (
     <div className="w-screen min-h-screen bg-richblack-900 flex flex-col font-inter">
-      <Navbar />
+        <Navbar />
       <Routes>
         <Route path="/" element={<Home />} />
         <Route
@@ -108,7 +108,7 @@ function App() {
           {
             user?.accountType === ACCOUNT_TYPE.INSTRUCTOR && (
               <>
-                {/* <Route path="dashboard/add-course" element={<AddCourse/>}/> */}
+                <Route path="dashboard/add-course" element={<AddCourse/>}/>
               </>
             )
           }

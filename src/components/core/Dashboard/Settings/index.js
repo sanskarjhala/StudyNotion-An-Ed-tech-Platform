@@ -8,7 +8,7 @@ import UpdateProfilePicture from "./UpdateProfilePicture";
 export default function Settings(){
     return(
         <>
-            <h1 className="text-4xl font-bold text-richblack-5 mb-16">
+            <h1 className="text-3xl lg:text-4xl font-bold text-richblack-5 mb-16">
                 Edit Profile
             </h1>
             

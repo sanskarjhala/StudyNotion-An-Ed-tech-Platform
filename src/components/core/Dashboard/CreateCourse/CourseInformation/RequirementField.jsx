@@ -10,7 +10,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
             required:true,
             // validate: (value) => value.length > 0
         })
-    },[])
+    },[name,register])//Changes made 
 
     useEffect(()=> {
         setValue(name, requirementList);

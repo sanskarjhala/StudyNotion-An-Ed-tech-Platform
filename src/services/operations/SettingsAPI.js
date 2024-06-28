@@ -24,7 +24,7 @@ export function updatedDisplayPicture(token, formData, navigate) {
         formData,
         {
           "Content-Type": "multipart/form-data",
-          Authorisation: `Bearer ${token}`,
+          Authorization: `Bearer ${token}`,
         }
       );
 
@@ -52,7 +52,7 @@ export function updateProfile(token, formData , navigate) {
     const toastId = toast.loading("Loading...");
     try {
       const response = await apiConnector("PUT", UPDATE_PROFILE_API, formData, {
-        Authorisation: `Bearer ${token}`,
+        Authorization: `Bearer ${token}`,
       });
      
       console.log("UPDATE_PROFILE_API API RESPONSE............", response);
@@ -88,7 +88,7 @@ export async function changePassword ( token , formData){
         CHANGE_PASSWORD_API,
         formData,
         {
-          Authorisation : `Bearer ${token}`
+          Authorization : `Bearer ${token}`
         }
       )
       console.log("CHANGE PASSWORD API RESPONSE : " , response);
@@ -111,7 +111,7 @@ export function deleteProfile(token, navigate){
     const toastId = toast.loading("Deleting...");
     try {
       const response = await apiConnector("DELETE" , DELETE_PROFILE_API , null , {
-        Authorisation : `Bearer ${token}`
+        Authorization : `Bearer ${token}`
       })
       console.log("DELETE PROFILE API RESPOONSE : " , response)
       

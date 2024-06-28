@@ -32,7 +32,7 @@ const TimeLineSection = () => {
   ];
   return (
     <div>
-      <div className="flex flex-row gap-20 items-center justify-between ">
+      <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 items-center justify-between ">
         <div className="w-[45%] flex flex-col gap-12">
           {timeLine.map((element, index) => {
             return (
@@ -66,14 +66,14 @@ const TimeLineSection = () => {
           py-6  left-[50%] translate-x-[-50%] translate-y-[-50%]"
           >
             <div className="flex flex-row gap-5 items-center border-r border-caribbeangreen-200 px-7">
-              <p className="text-3xl font-bold">10</p>
+              <p className="text-2xl lg:text-3xl font-bold ">10</p>
               <p className="text-caribbeangreen-200 text-sm">
                 Years of Experience
               </p>
             </div>
 
             <div className="flex flex-row gap-5 items-center px-7">
-              <p className="text-3xl font-bold">250</p>
+              <p className="text-2xl lg:text-3xl font-bold">250</p>
               <p className="text-caribbeangreen-200 text-sm">
                 Types of Courses
               </p>

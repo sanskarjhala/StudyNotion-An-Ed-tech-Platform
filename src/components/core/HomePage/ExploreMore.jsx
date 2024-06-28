@@ -29,7 +29,7 @@ const ExploreMore = () => {
 
   return (
     <div >
-      <div className="text-4xl font-bold text-center">
+      <div className="text-2xl lg:text-4xl font-bold text-center">
         Unlock the
         <HighLightText text={"Power of Code"} />
       </div>
@@ -45,7 +45,7 @@ const ExploreMore = () => {
         {tabs.map((element, index) => {
           return (
             <div
-              className={`text-[16px] flex flex-row items-center gap-2 
+              className={`hidden text-[16px] md:flex flex-row items-center gap-2 
                     ${
                       currentTab === element
                         ? "bg-richblack-900 text-richblack-5 font-medium"

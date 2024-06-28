@@ -65,7 +65,7 @@ const Home = () => {
         <div className="relative">
           <CodeBlocks
             backgroudGradient={Gradient1}
-            position={"lg:flex-row"}
+            position={"flex-col lg:flex-row"}
             heading={
               <div className="text-4xl font-semibold">
                 Unlock Your <HighLightText text={"coding potential"} /> with our
@@ -85,7 +85,7 @@ const Home = () => {
               linkto: "/login",
               active: false,
             }}
-            codeblock={`<<!DOCTYPE html>\n<html>\n<head>\n<title>Example</title>\n<linkrel="stylesheet"href="styles.css">\n/head>\n`}
+            codeblock={`<<!DOCTYPE html>\n<html>\n<head>\n<title>Example\n</title>\n<linkrel="stylesheet\n"href="styles.css">\n/head>\n`}
             codeColor={"text-yellow-25"}
           />
         </div>
@@ -94,7 +94,7 @@ const Home = () => {
         <div>
           <CodeBlocks
             backgroudGradient={Gradient2}
-            position={"lg:flex-row-reverse"}
+            position={"flex-col lg:flex-row-reverse"}
             heading={
               <div className="text-4xl font-semibold">
                 Start <HighLightText text={`Coding in seconds `} />
@@ -113,7 +113,7 @@ const Home = () => {
               linkto: "/login",
               active: false,
             }}
-            codeblock={`<<!DOCTYPE html>\n<html>\nhead><title>Example</title><linkrel="stylesheet"href="styles.css">\n/head>\n`}
+            codeblock={`<<!DOCTYPE html>\n<html>\n<head>\n<title>Example\n</title>\n<linkrel="stylesheet\n"href="styles.css">\n/head>\n`}
             codeColor={"text-yellow-25"}
           />
         </div>
@@ -124,9 +124,9 @@ const Home = () => {
 
       {/* Section 2 */}
       <div className="bg-pure-greys-5 text-richblack-700 ">
-        <div className="homepage_bg h-[333px] ">
+        <div className="homepage_bg h-[120px] lg:h-[333px] ">
           <div className="w-11/12 max-w-maxContent flex flex-col items-center gap-5 mx-auto">
-            <div className="h-[150px]"></div>
+            <div className="h-[50px]  lg:h-[150px]"></div>
             <div className="flex flex-row text-white gap-7 h-[100%] items-center ">
               <CTAButton active={true} linkedTo={"/signup"}>
                 <div className="flex items-center gap-2">
@@ -146,13 +146,13 @@ const Home = () => {
           className=" mx-auto w-11/12  max-w-maxContent flex flex-col items-center justify-between
         gap-10"
         >
-          <div className="flex flex-row gap-5 mb-10 mt-24">
-            <div className="text-4xl font-semibold w-[45%]">
+          <div className="flex flex-col lg:flex-row gap-5 mb-10 mt-24">
+            <div className="text-4xl font-semibold lg:w-[45%]">
               Get the Skills you need for a
               <HighLightText text={"Job That is in Demand"} />
             </div>
 
-            <div className=" flex flex-col w-[40%] gap-10 items-start">
+            <div className=" flex flex-col lg:w-[40%] gap-10 items-start">
               <div className="text-[16px]">
                 The modern StudyNotion is the dictates its own terms. Today, to
                 be a competitive specialist requires more than professional
@@ -174,7 +174,7 @@ const Home = () => {
       </div>
 
       {/* Section 3 */}
-      <div className="w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-20
+      <div className="w-11/12 max-w-maxContent flex flex-col items-center justify-between gap-10 lg:gap-20
       bg-richblack-900 text-white mx-auto">
 
         <InstructorSection/>

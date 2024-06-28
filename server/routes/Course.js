@@ -59,7 +59,7 @@ router.post("/updateSection", auth , isInstructor , updateSection);
 //delete a section
 router.post("/deleteSection" , auth , isInstructor , deleteSection);
 //update a sub Section
-router.post("updateSubSection" , auth,isInstructor , updateSubSection);
+router.post("/updateSubSection" , auth,isInstructor , updateSubSection);
 //delete Sub Section
 router.post("/deleteSubSection",auth,isInstructor,deleteSubSection);
 //add a sub section

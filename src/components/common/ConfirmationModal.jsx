@@ -13,7 +13,7 @@ const ConfirmationModal = ({ modalData }) => {
         </p>
         <div className="flex items-center gap-x-4">
           <IconButton
-            onclick={modalData?.btn1Handler}
+            onClick={modalData?.btn1Handler}
             text={modalData?.btn1Text}
             customClasses={"cursor-pointer rounded-md bg-yellow-50 py-[8px] px-[20px] font-semibold text-richblack-900"}
           />

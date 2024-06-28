@@ -6,17 +6,17 @@ import { FaArrowRight } from "react-icons/fa";
 
 const InstructorSection = () => {
   return (
-    <div className="mt-24 translate-x-20">
-      <div className="flex flex-row gap-16 items-center">
-        <div className="shadow-[-20px_-20px_0px_2px_#f7fafc] w-[50%] rounded-sm">
+    <div className="mt-24 lg:translate-x-20">
+      <div className="flex flex-col lg:flex-row gap-16 items-center">
+        <div className="lg:shadow-[-20px_-20px_0px_2px_#f7fafc] lg:w-[50%] rounded-sm">
           <img
             src={Instructor}
             alt="Instructor"
-            className="object-fit rounded-sm"
+            className=" object-fit rounded-sm"
           />
         </div>
 
-        <div className="flex flex-col gap-20 w-[50%]">
+        <div className="flex flex-col gap-10 lg:gap-20 lg:w-[50%]">
           <div className="text-4xl font-bold">
             Become an
             <HighLightText text={"Instructor"} />

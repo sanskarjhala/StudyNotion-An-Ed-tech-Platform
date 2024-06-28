@@ -89,7 +89,7 @@ export const addCourseDetails = async (data, token) => {
   try {
     const response = await apiConnector("POST", CREATE_COURSE_API, data, {
       "Content-Type": "multipart/form-data",
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     console.log("CREATE COURSE API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -112,7 +112,7 @@ export const editCourseDetails = async (data, token) => {
   try {
     const response = await apiConnector("POST", EDIT_COURSE_API, data, {
       "Content-Type": "multipart/form-data",
-      Authorisation: `Bearer ${token}`,
+      Authorization: `Bearer ${token}`,
     })
     console.log("EDIT COURSE API RESPONSE............", response)
     if (!response?.data?.success) {
@@ -141,7 +141,8 @@ export const createSection = async (data, token) => {
       throw new Error("Could Not Create Section")
     }
     toast.success("Course Section Created")
-    result = response?.data?.updatedCourse
+    result = response?.data?.updatedCourseDetails
+    
   } catch (error) {
     console.log("CREATE SECTION API ERROR............", error)
     toast.error(error.message)
@@ -154,6 +155,7 @@ export const createSection = async (data, token) => {
 export const createSubSection = async (data, token) => {
   let result = null
   const toastId = toast.loading("Loading...")
+  console.log("INCOMMING DATA IN CREATE SUB_SECTION API : " , data)
   try {
     const response = await apiConnector("POST", CREATE_SUBSECTION_API, data, {
       Authorization: `Bearer ${token}`,
@@ -197,6 +199,7 @@ export const updateSection = async (data, token) => {
 // update a subsection
 export const updateSubSection = async (data, token) => {
   let result = null
+  console.log("DATA>>>>>>> API CALL" , data);
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("POST", UPDATE_SUBSECTION_API, data, {

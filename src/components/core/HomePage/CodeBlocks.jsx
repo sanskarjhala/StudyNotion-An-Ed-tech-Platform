@@ -8,10 +8,10 @@ const CodeBlocks = ({
     position, heading, subheading, ctabtn1, ctabtn2, codeblock, backgroudGradient, codeColor
 }) => {
   return (
-    <div className={`flex ${position} my-20 justify-between gap-10 `}>
+    <div className={`flex ${position} my-10 lg:my-20 justify-between gap-10 `}>
       
     {/*Section 1*/}
-    <div className='w-[50%] flex flex-col gap-8'>
+    <div className='lg:w-[50%] flex flex-col gap-8'>
         {heading}
         <div className='text-richblack-300 font-bold '>
             {subheading}
@@ -34,7 +34,7 @@ const CodeBlocks = ({
     </div>
 
      {/*Section 2*/}
-     <div className=' h-fit  flex flex-row text-10[px] w-[100%] py-4 lg:w-[500px] relative'> 
+     <div className=' h-fit  flex flex-row  w-[100%] py-4 lg:w-[500px] max-[600px]:ml-5 relative'> 
 
         <img src={backgroudGradient} alt='' className='absolute -top-16 -left-16'/>
 

@@ -168,7 +168,7 @@ const EditProfile = () => {
                 Contact Number
               </label>
 
-              <div className="flex gap-x-4">
+              <div className="flex flex-col gap-y-5 lg:flex-row lg:gap-x-4">
                 <select
                   type="text"
                   name="dropdown"
@@ -235,7 +235,7 @@ const EditProfile = () => {
 
         </div>
 
-        <div className="flex justify-end gap-4 mr-5">
+        <div className="flex justify-center lg:justify-end gap-4 lg:mr-5">
           <button
             onClick={() => {
               navigate("/dashboard/my-profile")

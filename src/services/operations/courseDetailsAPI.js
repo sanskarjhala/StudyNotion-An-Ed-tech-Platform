@@ -4,6 +4,7 @@ import { toast } from "react-hot-toast"
 // import { setLoading } from "../../slices/profileSlice";
 import { apiConnector } from "../apiconnector"
 import { courseEndpoints } from "../apis"
+import { setCourse, setEditCourse } from "../../slices/courseSlice"
 
 const {
   COURSE_DETAILS_API,
@@ -289,7 +290,7 @@ export const fetchInstructorCourses = async (token) => {
 }
 
 // delete a course
-export const deleteCourse = async (data, token) => {
+export const deleteCourse = async (data, token , dispatch) => {
   const toastId = toast.loading("Loading...")
   try {
     const response = await apiConnector("DELETE", DELETE_COURSE_API, data, {
@@ -299,6 +300,8 @@ export const deleteCourse = async (data, token) => {
     if (!response?.data?.success) {
       throw new Error("Could Not Delete Course")
     }
+    dispatch(setCourse(null));
+    dispatch(setEditCourse(false));
     toast.success("Course Deleted")
   } catch (error) {
     console.log("DELETE COURSE API ERROR............", error)

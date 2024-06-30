@@ -165,7 +165,7 @@ const CourseBuilderForm = () => {
         />
       )}
 
-      <div className="flex justify-end gap-x-3">
+      <div className="flex justify-end gap-x-3 mt-6">
         <button
           onClick={goBack}
           className="cursor-pointer rounded-xl bg-richblack-700 py-2 px-5 font-semibold text-richblack-50"

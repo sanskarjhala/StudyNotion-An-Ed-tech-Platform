@@ -14,7 +14,7 @@ const RequirementField = ({name, label, register, errors, setValue, getValues}) 
 
     useEffect(()=> {
         setValue(name, requirementList);
-        setRequirement("");
+        // setRequirement("");
     },[requirementList])
 
     const handleAddRequirement = () => {

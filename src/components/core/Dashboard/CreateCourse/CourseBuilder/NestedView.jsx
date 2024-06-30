@@ -56,22 +56,23 @@ const NestedView = ({ handlerChangeEditSectionName }) => {
   };
 
   return (
-    <div className="text-richblack-5">
-      <div>
+    <div className="mt-6 text-richblack-5">
+      <div    className="rounded-lg bg-richblack-700 p-6 px-8"
+          id="nestedViewContainer">
         {course?.courseContent?.map((section) => {
           return (
             <details key={section._id} open>
-              <summary className="flex items-center justify-between gap-x-3 border-b-2">
-                <div className="flex items-center gap-x-2">
-                  <RxDropdownMenu />
-                  <p>{section.sectionName}</p>
+              <summary className="flex cursor-pointer items-center justify-between border-b-2 border-b-richblack-600 py-2">
+                <div className="flex items-center gap-x-3">
+                  <RxDropdownMenu className="text-2xl text-richblack-50" />
+                  <p className="font-semibold text-richblack-50">{section.sectionName}</p>
                 </div>
 
-                <div className="flex items-center ">
+                <div className="flex items-center gap-x-3">
                   <button
                     onClick={() => handlerChangeEditSectionName(section._id , section.sectionName)}
                   >
-                    <MdEdit />
+                    <MdEdit  className="text-xl text-richblack-300"/>
                   </button>
 
                   <button
@@ -87,27 +88,28 @@ const NestedView = ({ handlerChangeEditSectionName }) => {
                       });
                     }}
                   >
-                    <RiDeleteBin6Line />
+                    <RiDeleteBin6Line  className={`text-xl text-richblack-300`} />
                   </button>
-                  <span>|</span>
+                  <span className="font-medium text-richblack-300">|</span>
 
                   <BiSolidDownArrow className="text-lg text-richblack-300" />
                 </div>
               </summary>
 
-              <div>
+              <div className="px-6 pb-4">
                 {section?.subSection?.map((data) => {
                   return (
                     <div
                       key={data?._id}
                       onClick={() => setViewSubSection(data)}
+                       className="flex cursor-pointer items-center justify-between gap-x-3 border-b-2 border-b-richblack-600 py-2"
                     >
-                      <div className="flex items-center gap-x-2">
-                        <RxDropdownMenu />
-                        <p>{data.title}</p>
+                      <div className="flex items-center gap-x-3 py-2 ">
+                        <RxDropdownMenu className="text-2xl text-richblack-50"  />
+                        <p className="font-semibold text-richblack-50">{data.title}</p>
                       </div>
 
-                      <div onClick={(e) =>e.stopPropagation()}>
+                      <div onClick={(e) =>e.stopPropagation()} className="flex items-center gap-x-3">
                         <button
                           onClick={() =>
                             setEditSubSection({
@@ -116,7 +118,7 @@ const NestedView = ({ handlerChangeEditSectionName }) => {
                             })
                           }
                         >
-                          <MdEdit />
+                          <MdEdit className="text-xl text-richblack-300"/>
                         </button>
 
                         <button
@@ -132,14 +134,14 @@ const NestedView = ({ handlerChangeEditSectionName }) => {
                             })
                           }
                         >
-                          <RiDeleteBin6Line />
+                          <RiDeleteBin6Line className="text-xl text-richblack-300" />
                         </button>
                       </div>
                     </div>
                   );
                 })}
-                <button onClick={() => setAddSubSection(section._id)}>
-                  <AiOutlinePlus />
+                <button onClick={() => setAddSubSection(section._id)}  className="mt-3 flex items-center gap-x-1 text-yellow-50">
+                  <AiOutlinePlus className="text-lg"/>
                   <p>Add Lecture</p>
                 </button>
               </div>

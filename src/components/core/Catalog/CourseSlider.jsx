@@ -1,10 +1,16 @@
 import React from 'react'
+import Course_Card from "./Course_card"
+import { Swiper, SwiperSlide } from 'swiper/react';
 
-import {Swiper, SwiperSlide} from "swiper/react"
-import "swiper/css"
-import "swiper/css/free-mode"
-import "swiper/css/pagination"
-import { Autoplay,FreeMode,Navigation, Pagination}  from 'swiper'
+// Import Swiper styles
+import 'swiper/css';
+import 'swiper/css/pagination';
+import 'swiper/css/navigation';
+
+// import './styles.css';
+
+// import required modules
+import { Autoplay, Pagination, Navigation } from 'swiper/modules';
 
 const CourseSlider = ({Courses}) => {
   return (
@@ -12,20 +18,18 @@ const CourseSlider = ({Courses}) => {
         {
             Courses?.length ? (
                 <Swiper
-                    slidesPerView={1}
-                    loop={true}
-                    spaceBetween={200}
-                    pagination={true}
-                    modules={[Autoplay,Pagination,Navigation]}
-                    className="mySwiper"
-                    autoplay={{
-                    delay: 1000,
-                    disableOnInteraction: false,
-                    }}
-                    navigation={true}
-                    breakpoints={{
-                        1024:{slidesPerView:3,}
-                    }}
+                    spaceBetween={30}
+        centeredSlides={true}
+        autoplay={{
+          delay: 2500,
+          disableOnInteraction: false,
+        }}
+        pagination={{
+          clickable: true,
+        }}
+        navigation={true}
+        modules={[Autoplay, Pagination, Navigation]}
+        className="mySwiper"
                 >
                     {
                         Courses?.map((course, index)=> (

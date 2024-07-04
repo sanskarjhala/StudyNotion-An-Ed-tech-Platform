@@ -28,10 +28,10 @@ exports.auth = async ( req,res,next) => {
             req.user = decode;
         } catch (error) {
             //verifiaction issue 
-            res.status(401).json(
+            return res.status(401).json(
                 {
                     success:false,
-                    message:"token is invalid ",
+                    message:"token is invalid HAI BHAIYA",
                 }
             )
         }

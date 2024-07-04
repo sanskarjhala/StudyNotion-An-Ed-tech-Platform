@@ -20,6 +20,8 @@ import { useSelector } from "react-redux";
 import MyCourses from "./components/core/Dashboard/MyCourses";
 import EditCourse from "./components/core/Dashboard/EditCourse";
 import Catalog from "./pages/Catalog";
+import EnrolledCourses from "./components/core/Dashboard/EnrolledCourses";
+import CourseDetails from "./pages/CourseDetails";
 
 
 
@@ -36,6 +38,7 @@ function App() {
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="catalog/:catalogName" element={<Catalog />} />
+        <Route path="courses/:courseId" element={<CourseDetails />} />
 
         <Route
           path="login"
@@ -57,9 +60,9 @@ function App() {
         <Route
           path="about"
           element={
-            <OpenRoute>
+
               <About />
-            </OpenRoute>
+
           }
         />
 
@@ -102,11 +105,11 @@ function App() {
 
           {user?.accountType === ACCOUNT_TYPE.STUDENT && (
             <>
-              {/* <Route path="dashboard/cart" element={<Cart />} />
+              {/* <Route path="dashboard/cart" element={<Cart />} /> */}
               <Route
                 path="dashboard/enrolled-courses"
-                element={<EnrolledCourse />}
-              /> */}
+                element={<EnrolledCourses />}
+              />
             </>
           )}
 

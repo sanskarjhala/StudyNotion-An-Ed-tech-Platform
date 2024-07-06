@@ -16,12 +16,15 @@ const ForgetPassword = () => {
     dispatch(getPasswordResetToken(email , setEmailSent))
   };
 
+  if(loading){
+    return <div className="w-full h-full flex justify-center my-auto">
+      <div className="spinner "></div>
+    </div>
+  }
+
   return (
     <div className="w-11/12 max-w-maxContent mx-auto md:mt-44">
       <div className="w-[30%] mx-auto flex flex-col">
-      {loading ? (
-        <div>loading........</div>
-      ) : (
         <div className="space-y-3">
           <h1 className="text-richblack-5 text-4xl font-bold">{!emailSent ? "Reset your password" : "Check email"}</h1>
 
@@ -75,7 +78,6 @@ const ForgetPassword = () => {
           </div>
 
         </div>
-      )}
       </div>
     </div>
   );

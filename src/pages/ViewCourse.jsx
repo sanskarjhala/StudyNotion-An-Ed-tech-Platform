@@ -20,14 +20,16 @@ const ViewCourse = () => {
   useEffect(() => {
     const setCourseSpecificDetails = async () => {
       const courseData = await getFullDetailsOfCourse(courseId, token);
+      console.log("COURES DATA FROM VIEWCOURSE : " , courseData?.courseDetails.courseContent)
       dispatch(setCourseSectionData(courseData?.courseDetails.courseContent));
       dispatch(setEntireCourseData(courseData?.courseDetails));
       //TODO: IT MAY THROW ERROR
-      dispatch(setCompletedLectures(courseData?.completedLectures));
+      dispatch(setCompletedLectures(courseData?.completedVideos));
       let lectures = 0;
-      courseData?.courseDetails?.forEach(
-        (section) => (lectures += section.subSection.length)
+      courseData?.courseDetails?.courseContent?.forEach(
+        (section) => lectures += section.subSection.length
       );
+      console.log("LECTURES : " , lectures)
       dispatch(setTotalNoOfLectures(lectures));
     };
 

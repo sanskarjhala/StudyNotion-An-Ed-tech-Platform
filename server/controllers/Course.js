@@ -439,3 +439,56 @@ exports.deleteCourse = async (req, res) => {
     });
   }
 };
+
+// Get One Single Course Details
+exports.getCourseDetails = async (req, res) => {
+  try {
+    const { courseId } = req.body
+    const courseDetails = await Course.findOne({
+      _id: courseId,
+    })
+      .populate({
+        path: "instructor",
+        populate: {
+          path: "additionalDetails",
+        },
+      })
+      .populate("category")
+      .populate("ratingAndReviews")
+      .populate({
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      })
+      .exec()
+    // console.log(
+    //   "###################################### course details : ",
+    //   courseDetails,
+    //   courseId
+    // );
+    if (!courseDetails || !courseDetails.length) {
+      return res.status(400).json({
+        success: false,
+        message: `Could not find course with id: ${courseId}`,
+      })
+    }
+
+    if (courseDetails.status === "Draft") {
+      return res.status(403).json({
+        success: false,
+        message: `Accessing a draft course is forbidden`,
+      })
+    }
+
+    return res.status(200).json({
+      success: true,
+      data: courseDetails,
+    })
+  } catch (error) {
+    return res.status(500).json({
+      success: false,
+      message: error.message,
+    })
+  }
+}

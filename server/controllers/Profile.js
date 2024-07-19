@@ -1,3 +1,4 @@
+const Course = require("../models/Course");
 const Profile = require("../models/Profile");
 const User = require("../models/User");
 const { uploadImageToCloudinary } = require("../utils/imageUploader");
@@ -12,7 +13,7 @@ exports.upadteProfile = async (req, res) => {
     //get user id
     const userId = req.user.id;
     //perform validation
-    console.log(dateOfBirth ,  about , gender , contactNumber)
+    console.log(dateOfBirth, about, gender, contactNumber);
     if (!contactNumber || !userId || !gender) {
       return res.status(400).json({
         success: false,
@@ -20,7 +21,7 @@ exports.upadteProfile = async (req, res) => {
       });
     }
 
-    console.log(dateOfBirth ,  about , gender , contactNumber)
+    console.log(dateOfBirth, about, gender, contactNumber);
 
     //find profile
     const userDeatils = await User.findById(userId);
@@ -35,7 +36,9 @@ exports.upadteProfile = async (req, res) => {
 
     await profileDetails.save();
 
-    const updatedUserDetails = await User.findById(userId).populate("additionalDetails");
+    const updatedUserDetails = await User.findById(userId).populate(
+      "additionalDetails"
+    );
 
     //return response
     return res.status(200).json({
@@ -161,16 +164,15 @@ exports.updatedDisplayPicture = async (req, res) => {
 exports.getEnrolledCourse = async (req, res) => {
   try {
     const userId = req.user.id;
-    const userDetails = await User.findOne({ _id: userId })
-    .populate({
-		  path: "courses",
-		  populate: {
-			path: "courseContent",
-			populate: {
-			  path: "subSection",
-			},
-		  },
-		})
+    const userDetails = await User.findOne({ _id: userId }).populate({
+      path: "courses",
+      populate: {
+        path: "courseContent",
+        populate: {
+          path: "subSection",
+        },
+      },
+    });
 
     if (!userDetails) {
       return res.status(404).json({
@@ -189,6 +191,39 @@ exports.getEnrolledCourse = async (req, res) => {
       success: false,
       message: "Unable to fetch the enrooled courses",
       error: error.message,
+    });
+  }
+};
+
+exports.instructorDashboard = async (req, res) => {
+  try {
+    const courseDetails = await Course.find({ instructor: req.user.id });
+
+    const courseData = courseDetails.map((course) => {
+      const totalStudentEnrolled = course.studentsEnrolled.length;
+      const totalAmountGenerated = totalStudentEnrolled * course.price;
+
+      //create a new object with additional fields
+      const courseDataWithStats = {
+        _id: course._id,
+        courseName: course.courseName,
+        courseDescription: course.courseDescription,
+        totalStudentEnrolled,
+        totalAmountGenerated,
+      };
+      return courseDataWithStats;
+    });
+
+    return res.status(200).json({
+      success: true,
+      message: "Instructor dashboard details fetched succesfully",
+      courses: courseData,
+    });
+  } catch (error) {
+    console.log(error);
+    return res.status(500).json({
+      success: false,
+      message: "internal server Error",
     });
   }
 };
